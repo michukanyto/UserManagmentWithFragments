@@ -2,9 +2,9 @@ package com.appsmontreal.usermanagmentwithfragments.Dao;
 
 public class UserFactory {
 
-    private UserDao userDao = new UserDao();
+    private static UserDao userDao = new UserDao();
 
-    public UserDao getUserDao() {
+    public static UserDao getUserDao() {
         return userDao;
     }
 }
