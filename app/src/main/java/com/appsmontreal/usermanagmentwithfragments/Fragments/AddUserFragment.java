@@ -28,7 +28,7 @@ import java.util.Arrays;
 public class AddUserFragment extends Fragment {
 
     private FragmentEventListener fragmentEventListener;
-    
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -62,8 +62,8 @@ public class AddUserFragment extends Fragment {
                 imm.hideSoftInputFromWindow(getView().getRootView().getWindowToken(),0);//hide keyboard
                 EditText nameEdiText = view.findViewById(R.id.nameEditText);
                 EditText emailEditText = view.findViewById(R.id.emailEditText);
-                String name = nameEdiText.toString();
-                String email = emailEditText.toString();
+                String name = nameEdiText.getText().toString();
+                String email = emailEditText.getText().toString();
                 name += "NA";
                 String firstName = Arrays.asList(name.split("")).get(0);
                 String lastName = Arrays.asList(name.split("")).get(1);

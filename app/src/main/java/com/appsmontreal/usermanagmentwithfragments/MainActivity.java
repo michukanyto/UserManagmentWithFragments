@@ -13,11 +13,13 @@ import com.appsmontreal.usermanagmentwithfragments.Connection.FragmentEventListe
 import com.appsmontreal.usermanagmentwithfragments.Dao.UserDao;
 import com.appsmontreal.usermanagmentwithfragments.Dao.UserFactory;
 import com.appsmontreal.usermanagmentwithfragments.Fragments.AddUserFragment;
+import com.appsmontreal.usermanagmentwithfragments.Fragments.ListUserFragment;
 import com.appsmontreal.usermanagmentwithfragments.Model.User;
 
 public class MainActivity extends AppCompatActivity implements FragmentEventListener {
 
     private static final String ADD_USER_FRAGMENT_TAG = "ADD USER FRAGMENT" ;
+    private static final String LIST_USER_FRAGMENT_TAG = "LIST USER FRAGMENT TAG";
     private static final String BACK_STACK = "backStack" ;
 
     private UserDao userDao;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
     }
 
     private void connectButtons() {
+        /////////////////Add Users/////////
         Button addUserButton = findViewById(R.id.addButton);
         addUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +44,18 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
                 AddUserFragment addUserFragment = new AddUserFragment();
                 addFragment(R.id.containerFragment, addUserFragment, ADD_USER_FRAGMENT_TAG);
                 Log.i("Status ======> ", "step 1");
+            }
+        });
+
+        /////////////////List Users/////////
+        Button listUserButton = findViewById(R.id.listButton);
+        listUserButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                ListUserFragment listUserFragment = new ListUserFragment();
+                addFragment(R.id.containerFragment,listUserFragment, LIST_USER_FRAGMENT_TAG);
             }
         });
 
@@ -61,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
 
     @Override
     public void onUserListClicked(User user) {
+        removeFragment(LIST_USER_FRAGMENT_TAG);
 
     }
 
@@ -83,5 +99,6 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
         fragmentTransaction.commit();
         fragmentManager.popBackStack();
         Log.i("Status ======> ", "step 5");
+        
     }
 }
