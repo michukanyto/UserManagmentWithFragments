@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,7 +18,7 @@ import com.appsmontreal.usermanagmentwithfragments.Model.User;
 public class MainActivity extends AppCompatActivity implements FragmentEventListener {
 
     private static final String ADD_USER_FRAGMENT_TAG = "ADD USER FRAGMENT" ;
-    private static final String REMOVE_FRAGMENT_TAG = "REMOVE FRAGMENT";
+    private static final String BACK_STACK = "backStack" ;
 
     private UserDao userDao;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userDao = UserFactory.getUserDao();
-        userDao.addUser(new User("p@u.com","Pedro","Pablo"));
+        userDao.addUser(new User("p@u.com","Pedro","Pablo"));//Default users
         userDao.addUser(new User("m@u.com","Martha","Gagnon"));
         userDao.addUser(new User("ma@u.com","Martine","Lepont"));
         connectButtons();
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
             public void onClick(View v) {
                 AddUserFragment addUserFragment = new AddUserFragment();
                 addFragment(R.id.containerFragment, addUserFragment, ADD_USER_FRAGMENT_TAG);
+                Log.i("Status ======> ", "step 1");
             }
         });
 
@@ -47,8 +49,9 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
 
     @Override
     public void onUserAdded(User user) {
+        Log.i("Status ======> ", "step 4");
         userDao.addUser(user);
-        removeFragment(REMOVE_FRAGMENT_TAG);
+        removeFragment(ADD_USER_FRAGMENT_TAG);
     }
 
     @Override
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 //        fragmentTransaction.setCustomAnimations(R.anim.from_left, R.anim.from_left);
         fragmentTransaction.add(containerId, fragment, tag);
-        fragmentTransaction.addToBackStack("backStack");
+        fragmentTransaction.addToBackStack(BACK_STACK);
         fragmentTransaction.commit();
     }
 
@@ -79,5 +82,6 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
         fragmentTransaction.remove(fragmentManager.findFragmentByTag(tag));
         fragmentTransaction.commit();
         fragmentManager.popBackStack();
+        Log.i("Status ======> ", "step 5");
     }
 }

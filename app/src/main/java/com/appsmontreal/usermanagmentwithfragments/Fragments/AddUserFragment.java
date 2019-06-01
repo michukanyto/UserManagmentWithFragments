@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.Arrays;
 public class AddUserFragment extends Fragment {
 
     private FragmentEventListener fragmentEventListener;
+    
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -41,8 +43,10 @@ public class AddUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i("Status ======> ", "step 2");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_user, container, false);
+
 
     }
 
@@ -53,6 +57,7 @@ public class AddUserFragment extends Fragment {
         addUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("Status ======> ", "step 3");
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getView().getRootView().getWindowToken(),0);//hide keyboard
                 EditText nameEdiText = view.findViewById(R.id.nameEditText);
