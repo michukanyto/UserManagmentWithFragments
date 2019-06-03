@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
     private static final String BACK_STACK = "backStack" ;
     private static final String UPDATE_FRAGMENT_TAG = "UPDATE FRAGMENT TAG" ;
 
-    private UserDao userDao;
+    public static UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
 
     @Override
     public void onUserUpdated(User newUser) {
+
         removeFragment(UPDATE_FRAGMENT_TAG);
     }
 

@@ -19,7 +19,6 @@ import com.appsmontreal.usermanagmentwithfragments.Connection.FragmentEventListe
 import com.appsmontreal.usermanagmentwithfragments.Model.User;
 import com.appsmontreal.usermanagmentwithfragments.R;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -65,8 +64,8 @@ public class AddUserFragment extends Fragment {
                 String name = nameEdiText.getText().toString();
                 String email = emailEditText.getText().toString();
                 name += "NA";
-                String firstName = Arrays.asList(name.split("")).get(0);
-                String lastName = Arrays.asList(name.split("")).get(1);
+                String firstName = Arrays.asList(name.split(" ")).get(0);
+                String lastName = Arrays.asList(name.split(" ")).get(1);
                 fragmentEventListener.onUserAdded(new User(email,firstName,lastName));
             }
         });
