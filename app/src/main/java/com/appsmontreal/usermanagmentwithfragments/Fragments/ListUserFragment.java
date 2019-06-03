@@ -26,6 +26,7 @@ public class ListUserFragment extends ListFragment {
 
     private FragmentEventListener fragmentEventListener;
     private UserDao userDao;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -40,19 +41,17 @@ public class ListUserFragment extends ListFragment {
     }
 
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_user, container, false);
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ArrayAdapter<User> arrayAdapter = new ArrayAdapter<User>(getContext(), android.R.layout.simple_list_item_1);
+        ArrayAdapter<User> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
         arrayAdapter.addAll(userDao.getAll());
         setListAdapter(arrayAdapter);
     }
