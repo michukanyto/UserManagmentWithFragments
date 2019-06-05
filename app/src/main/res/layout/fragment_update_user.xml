@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="260dp"
         android:text="User Email"
         android:textColor="#000000"
         android:textStyle="bold"
@@ -26,8 +26,20 @@
         android:layout_width="68dp"
         android:layout_height="22dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="Last Name"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="80dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="49dp"
-        android:text="User Name"
+        android:text="First Name"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,19 +88,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/updateNameEditText"
+        android:id="@+id/updateLastNameEditText"
         android:layout_width="255dp"
         android:layout_height="41dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="Rene Levesque"
+        android:hint="Levesque"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/updateFirstNameEditText" />
+
+    <EditText
+        android:id="@+id/updateFirstNameEditText"
+        android:layout_width="255dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Rene "
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/updateEmailEditText" />
 
     <EditText
@@ -96,7 +124,7 @@
         android:layout_width="255dp"
         android:layout_height="41dp"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="example@mydomain.com"
@@ -127,12 +155,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="54dp"
         android:layout_marginEnd="162dp"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/updateLastNameEditText" />
 
 </android.support.constraint.ConstraintLayout>

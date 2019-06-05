@@ -63,7 +63,7 @@ public class AddUserFragment extends Fragment {
                 EditText emailEditText = view.findViewById(R.id.emailEditText);
                 String name = nameEdiText.getText().toString();
                 String email = emailEditText.getText().toString();
-                name += "NA";
+                name += " NA";//to control last Name not empty
                 String firstName = Arrays.asList(name.split(" ")).get(0);
                 String lastName = Arrays.asList(name.split(" ")).get(1);
                 fragmentEventListener.onUserAdded(new User(email,firstName,lastName));

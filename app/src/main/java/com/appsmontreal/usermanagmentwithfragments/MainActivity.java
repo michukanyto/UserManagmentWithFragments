@@ -81,10 +81,11 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
     }
 
     @Override
-    public void onUserUpdated(User newUser) {
-
+    public void onUserUpdated(String oldEmail,User newUser) {
+        userDao.updateUser(userDao.getUserByEmail(oldEmail), newUser);
         removeFragment(UPDATE_FRAGMENT_TAG);
     }
+
 
     @Override
     public void onUserListClicked(User user) {
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEventList
         Log.i("Status ======> ", "I'm here");
 
     }
+
 
     private void addFragment(int containerId, Fragment fragment, String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();

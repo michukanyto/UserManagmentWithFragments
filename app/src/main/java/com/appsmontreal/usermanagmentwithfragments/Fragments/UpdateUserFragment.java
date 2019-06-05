@@ -1,6 +1,7 @@
 package com.appsmontreal.usermanagmentwithfragments.Fragments;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -64,7 +66,8 @@ public class UpdateUserFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getRootView().getWindowToken(), 0);
                 email = emailSearchEditText.getText().toString();
                 if(userDao.contains(email)) {
                     onUser = userDao.getUserByEmail(email);
@@ -78,19 +81,24 @@ public class UpdateUserFragment extends Fragment {
         });
 
 
-        final EditText updateEmailEditText = view.findViewById(R.id.updateEmailEditText);
-        final EditText updateNameEditText = view.findViewById(R.id.updateNameEditText);
-        final String updatedEmail = updateEmailEditText.getText().toString();
-        final String updatedName = updateNameEditText.getText().toString();
-        final String firstName = Arrays.asList(updatedName.split(" ")).get(0);
-        final String lastName = Arrays.asList(updatedName.split(" ")).get(1);
+
         Button updateButton = view.findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDao.updateUser(onUser,new User(updatedEmail,firstName,lastName));
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getRootView().getWindowToken(), 0);
+                EditText updateEmailEditText = view.findViewById(R.id.updateEmailEditText);
+                EditText updateFirstNameEditText = view.findViewById(R.id.updateFirstNameEditText);
+                EditText updateLastNameEditText = view.findViewById(R.id.updateLastNameEditText);
+                String updatedEmail = updateEmailEditText.getText().toString();
+                String firstName = updateFirstNameEditText.getText().toString();
+                String lastName = updateLastNameEditText.getText().toString();
+                fragmentEventListener.onUserUpdated(email,new User(updatedEmail, firstName, lastName));
             }
         });
+
+
 
 
 
